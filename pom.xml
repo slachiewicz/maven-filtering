@@ -55,7 +55,7 @@
   </distributionManagement>
 
   <properties>
-    <mavenVersion>3.0</mavenVersion>
+    <mavenVersion>3.6.3</mavenVersion>
     <javaVersion>7</javaVersion>
   </properties>
 
