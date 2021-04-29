@@ -1,0 +1,21 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: org.mockito:mockito-core
+    versions:
+    - 3.8.0
+  - dependency-name: commons-io:commons-io
+    versions:
+    - 2.8.0
+  - dependency-name: org.eclipse.sisu:org.eclipse.sisu.plexus
+    versions:
+    - 0.3.4
+  - dependency-name: org.codehaus.plexus:plexus-interpolation
+    versions:
+    - "1.26"
