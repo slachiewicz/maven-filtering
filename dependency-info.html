@@ -16,6 +16,7 @@
     <script src="./js/fluido-theme.js"></script>
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
+    <script src="./js/bootstrap-5.3.8.bundle.min.js" defer></script>
     <script src="./js/apache-maven-fluido-2.2.0-SNAPSHOT.min.js"></script>
     <script src="./js/highlight-11.12.0.min.js"></script>
 
@@ -40,8 +41,9 @@
     <a class="visually-hidden-focusable" href="#bodyColumn">Skip to the content</a>
     <div class="container-fluid pt-2">
       <header>
-        <div id="banner" class="d-flex flex-wrap justify-content-between align-items-center mb-2">
-          <div id="bannerLeft"><p class="m-0 fs-3 fw-bold"><a href="https://maven.apache.org/"><img class="img-fluid" src="https://maven.apache.org/images/apache-maven-project-light-theme.svg" alt="Apache Maven Filtering" style="width: 489px;height: 83px;" /></a></p></div>          <div id="bannerRight" class="d-none d-md-block"><img class="img-fluid" src="https://maven.apache.org/images/logos/MavenLogoLeaf.svg" alt="" style="width: 340px;height: 83px;" /></div>        </div>
+        <div id="banner" class="navbar flex-nowrap align-items-center column-gap-2 py-0 mb-2">
+          <button type="button" class="navbar-toggler menu-toggle d-lg-none flex-shrink-0" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+          <div id="bannerLeft" class="me-auto"><p class="m-0 fs-3 fw-bold"><a href="https://maven.apache.org/"><img class="img-fluid" src="https://maven.apache.org/images/apache-maven-project-light-theme.svg" alt="Apache Maven Filtering" style="width: 489px;height: 83px;" /></a></p></div>          <div id="bannerRight" class="d-none d-md-block"><img class="img-fluid" src="https://maven.apache.org/images/logos/MavenLogoLeaf.svg" alt="" style="width: 340px;height: 83px;" /></div>        </div>
 
         <div id="breadcrumbs" class="d-flex flex-wrap align-items-center column-gap-3 row-gap-1 mb-3 small">
           <nav aria-label="Breadcrumb">
@@ -55,7 +57,6 @@
           </nav>
           <button type="button" class="theme-switch btn btn-sm border ms-md-auto" hidden>Theme</button>
         </div>
-        <p class="menu-jump d-lg-none text-end mb-2"><a class="btn btn-sm border" href="#leftColumn">Menu</a></p>
       </header>
       <div class="row">
         <main id="bodyColumn" class="col-lg-9 col-xl-10 order-lg-last">
@@ -82,9 +83,13 @@
 <h2>Leiningen</h2>
 <pre tabindex="0">[org.apache.maven.shared/maven-filtering &quot;3.5.2-SNAPSHOT&quot;]</pre></section></section>        </main>
         <header id="leftColumn" class="col-lg-3 col-xl-2 order-lg-first">
+          <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+            <div class="offcanvas-header">
+              <p class="offcanvas-title h5 mb-0" id="sidebarMenuLabel">Menu</p>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body flex-column">
           <nav class="sidebar-nav border-end mb-3" aria-label="Menu">
-            <details class="sidebar-menu" open>
-              <summary class="d-lg-none fw-bold px-3 py-1">Menu</summary>
               <ul class="menu-list list-unstyled mb-0">
                 <li class="menu-heading pt-2 small fw-semibold text-uppercase text-body-secondary"><span>Overview</span></li>
                 <li><a href="index.html">Introduction</a></li>
@@ -143,8 +148,9 @@
                 <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
                 <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
               </ul>
-            </details>
           </nav>
+            </div>
+          </div>
         </header>
       </div>
     </div>
