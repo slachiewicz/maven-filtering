@@ -21,7 +21,7 @@
    Bootstrap's colour modes (data-bs-theme on <html>): Light, Dark, or Auto, which follows the OS colour scheme.
    darkThemeEnabled makes Auto the default (data-fluido-theme="auto" on <html>). The choice is kept in localStorage.
    Loaded in <head>, so a stored choice applies before the first paint. It shows the switch that site.vm puts,
-   hidden, at the top of the menu: one button per mode. Plain ES5. */
+   hidden, at the top of the menu: one icon button that cycles the modes. Plain ES5. */
 ( function() {
     var KEY = 'fluido-theme';
     var MODES = [ 'light', 'dark', 'auto' ];
@@ -54,34 +54,32 @@
         }
     }
 
-    // the page carries the switch (three buttons), hidden until this script can make it work
+    var LABELS = { light: 'Light', dark: 'Dark', auto: 'Auto' };
+
+    // the page carries the switch, one icon button hidden until this script can make it work: it shows the current
+    // mode's icon and moves to the next mode on each activation
     document.addEventListener( 'DOMContentLoaded', function() {
-        var group = document.querySelector( '.theme-switch' );
-        if ( !group ) {
+        var button = document.querySelector( '.theme-switch' );
+        if ( !button ) {
             return;
         }
-        var buttons = group.querySelectorAll( '[data-fluido-theme-value]' );
-        function mark() {
-            for ( var i = 0; i < buttons.length; i++ ) {
-                var on = buttons[ i ].getAttribute( 'data-fluido-theme-value' ) === current;
-                buttons[ i ].setAttribute( 'aria-pressed', on ? 'true' : 'false' );
-                buttons[ i ].className = buttons[ i ].className.replace( /\s*\bactive\b/g, '' ) + ( on ? ' active' : '' );
-            }
+        function show() {
+            var next = MODES[ ( MODES.indexOf( current ) + 1 ) % MODES.length ];
+            button.setAttribute( 'data-fluido-theme-mode', current );
+            button.title = 'Theme: ' + LABELS[ current ];
+            button.setAttribute( 'aria-label', 'Theme: ' + LABELS[ current ] + '. Activate for ' + LABELS[ next ] + '.' );
         }
-        function choose() {
-            current = this.getAttribute( 'data-fluido-theme-value' );
+        button.addEventListener( 'click', function() {
+            current = MODES[ ( MODES.indexOf( current ) + 1 ) % MODES.length ];
             try {
                 localStorage.setItem( KEY, current );
             } catch ( e ) {
                 // not stored: the choice lasts for this page only
             }
             apply();
-            mark();
-        }
-        for ( var i = 0; i < buttons.length; i++ ) {
-            buttons[ i ].addEventListener( 'click', choose );
-        }
-        mark();
-        group.hidden = false;
+            show();
+        } );
+        show();
+        button.hidden = false;
     } );
 } )();
