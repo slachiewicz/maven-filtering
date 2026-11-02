@@ -20,8 +20,8 @@
 /* Colour theme. Pages are light by default, and stay light without this script. It maps the reader's choice onto
    Bootstrap's colour modes (data-bs-theme on <html>): Light, Dark, or Auto, which follows the OS colour scheme.
    darkThemeEnabled makes Auto the default (data-fluido-theme="auto" on <html>). The choice is kept in localStorage.
-   Loaded in <head>, so a stored choice applies before the first paint. With data-fluido-switch="true" it adds a
-   button to the breadcrumbs bar that cycles the three modes. Plain ES5. */
+   Loaded in <head>, so a stored choice applies before the first paint. It shows the switch that site.vm puts,
+   hidden, into the breadcrumbs bar, and cycles the three modes with it. Plain ES5. */
 ( function() {
     var KEY = 'fluido-theme';
     var MODES = [ 'light', 'dark', 'auto' ];
@@ -55,14 +55,12 @@
         }
     }
 
-    if ( root.getAttribute( 'data-fluido-switch' ) !== 'true' ) {
-        return;
-    }
+    // the page carries the switch, hidden until this script can make it work
     document.addEventListener( 'DOMContentLoaded', function() {
-        var bar = document.getElementById( 'breadcrumbs' );
-        var button = document.createElement( 'button' );
-        button.type = 'button';
-        button.className = 'theme-switch btn btn-sm border ms-2';
+        var button = document.querySelector( '.theme-switch' );
+        if ( !button ) {
+            return;
+        }
         function label() {
             button.textContent = 'Theme: ' + LABELS[ current ];
             button.setAttribute( 'aria-label', 'Colour theme: ' + LABELS[ current ] + '. Activate to change.' );
@@ -78,12 +76,6 @@
             apply();
             label();
         } );
-        if ( bar ) {
-            bar.appendChild( button );
-        } else {
-            // no breadcrumbs bar on this site: the footer holds the switch
-            var footer = document.querySelector( 'footer .footer-content' ) || document.body;
-            footer.appendChild( button );
-        }
+        button.hidden = false;
     } );
 } )();
