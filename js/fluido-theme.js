@@ -21,11 +21,10 @@
    Bootstrap's colour modes (data-bs-theme on <html>): Light, Dark, or Auto, which follows the OS colour scheme.
    darkThemeEnabled makes Auto the default (data-fluido-theme="auto" on <html>). The choice is kept in localStorage.
    Loaded in <head>, so a stored choice applies before the first paint. It shows the switch that site.vm puts,
-   hidden, into the breadcrumbs bar, and cycles the three modes with it. Plain ES5. */
+   hidden, at the top of the menu: one button per mode. Plain ES5. */
 ( function() {
     var KEY = 'fluido-theme';
     var MODES = [ 'light', 'dark', 'auto' ];
-    var LABELS = { light: 'Light', dark: 'Dark', auto: 'Auto' };
     var root = document.documentElement;
     var osDark = window.matchMedia ? window.matchMedia( '(prefers-color-scheme: dark)' ) : null;
     var fallback = root.getAttribute( 'data-fluido-theme' ) === 'auto' ? 'auto' : 'light';
@@ -55,27 +54,34 @@
         }
     }
 
-    // the page carries the switch, hidden until this script can make it work
+    // the page carries the switch (three buttons), hidden until this script can make it work
     document.addEventListener( 'DOMContentLoaded', function() {
-        var button = document.querySelector( '.theme-switch' );
-        if ( !button ) {
+        var group = document.querySelector( '.theme-switch' );
+        if ( !group ) {
             return;
         }
-        function label() {
-            button.textContent = 'Theme: ' + LABELS[ current ];
-            button.setAttribute( 'aria-label', 'Colour theme: ' + LABELS[ current ] + '. Activate to change.' );
+        var buttons = group.querySelectorAll( '[data-fluido-theme-value]' );
+        function mark() {
+            for ( var i = 0; i < buttons.length; i++ ) {
+                var on = buttons[ i ].getAttribute( 'data-fluido-theme-value' ) === current;
+                buttons[ i ].setAttribute( 'aria-pressed', on ? 'true' : 'false' );
+                buttons[ i ].className = buttons[ i ].className.replace( /\s*\bactive\b/g, '' ) + ( on ? ' active' : '' );
+            }
         }
-        label();
-        button.addEventListener( 'click', function() {
-            current = MODES[ ( MODES.indexOf( current ) + 1 ) % MODES.length ];
+        function choose() {
+            current = this.getAttribute( 'data-fluido-theme-value' );
             try {
                 localStorage.setItem( KEY, current );
             } catch ( e ) {
                 // not stored: the choice lasts for this page only
             }
             apply();
-            label();
-        } );
-        button.hidden = false;
+            mark();
+        }
+        for ( var i = 0; i < buttons.length; i++ ) {
+            buttons[ i ].addEventListener( 'click', choose );
+        }
+        mark();
+        group.hidden = false;
     } );
 } )();

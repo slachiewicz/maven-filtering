@@ -13,14 +13,14 @@
     <meta name="author" content="Olivier Lamy" />
     <meta name="date" content="2011-01-05" />
     <title>Usage – Apache Maven Filtering</title>
-    <link rel="stylesheet" href="./css/bootstrap-5.3.8.min.css?v=17171fc" />
-    <link rel="stylesheet" href="./css/apache-maven-fluido-2.2.0-SNAPSHOT.min.css?v=17171fc" />
-    <script src="./js/fluido-theme.js?v=17171fc"></script>
+    <link rel="stylesheet" href="./css/bootstrap-5.3.8.min.css?v=7f729d8" />
+    <link rel="stylesheet" href="./css/apache-maven-fluido-2.2.0-SNAPSHOT.min.css?v=7f729d8" />
+    <script src="./js/fluido-theme.js?v=7f729d8"></script>
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
-    <script src="./js/bootstrap-5.3.8.bundle.min.js?v=17171fc" defer></script>
-    <script src="./js/apache-maven-fluido-2.2.0-SNAPSHOT.min.js?v=17171fc"></script>
-    <script src="./js/highlight-11.12.0.min.js?v=17171fc"></script>
+    <script src="./js/bootstrap-5.3.8.bundle.min.js?v=7f729d8" defer></script>
+    <script src="./js/apache-maven-fluido-2.2.0-SNAPSHOT.min.js?v=7f729d8"></script>
+    <script src="./js/highlight-11.12.0.min.js?v=7f729d8"></script>
 
     <!-- Matomo -->
     <script>
@@ -45,8 +45,7 @@
       <header>
         <div id="banner" class="navbar flex-nowrap align-items-center column-gap-2 py-0 mb-2">
           <button type="button" class="navbar-toggler menu-toggle d-lg-none flex-shrink-0" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
-          <div id="bannerLeft" class="me-auto"><p class="m-0 fs-3 fw-bold"><a href="https://maven.apache.org/"><img class="img-fluid banner-light" src="https://maven.apache.org/images/apache-maven-project-light-theme.svg" alt="Apache Maven Filtering" style="width: 489px;height: 83px;" /><img class="img-fluid banner-dark" src="https://maven.apache.org/images/apache-maven-project-dark-theme.svg" alt="Apache Maven Filtering" style="width: 489px;height: 83px;" /></a></p></div>          <div id="bannerRight" class="d-none d-md-block"><img class="img-fluid" src="https://maven.apache.org/images/logos/MavenLogoLeaf.svg" alt="" style="width: 340px;height: 83px;" /></div>          <button type="button" class="theme-switch btn btn-sm border flex-shrink-0" hidden>Theme</button>
-        </div>
+          <div id="bannerLeft" class="me-auto"><p class="m-0 fs-3 fw-bold"><a href="https://maven.apache.org/"><img class="img-fluid banner-light" src="https://maven.apache.org/images/apache-maven-project-light-theme.svg" alt="Apache Maven Filtering" style="width: 489px;height: 83px;" /><img class="img-fluid banner-dark" src="https://maven.apache.org/images/apache-maven-project-dark-theme.svg" alt="Apache Maven Filtering" style="width: 489px;height: 83px;" /></a></p></div>          <div id="bannerRight" class="d-none d-md-block"><img class="img-fluid banner-light" src="images/logos/MavenLogoLeaf-light-theme.svg" alt="" style="width: 340px;height: 83px;" /><img class="img-fluid banner-dark" src="images/logos/MavenLogoLeaf-dark-theme.svg" alt="" style="width: 340px;height: 83px;" /></div>        </div>
 
         <div id="breadcrumbs" class="d-flex flex-wrap align-items-center column-gap-3 row-gap-1 mb-3 small">
           <nav aria-label="Breadcrumb">
@@ -57,7 +56,9 @@
             <li class="breadcrumb-item"><a href="index.html">Apache Maven Filtering</a></li>
             </ol>
           </nav>
-          <a class="edit-link ms-auto" href="https://github.com/apache/maven-filtering/tree/HEAD/src/site/markdown/usage.md">Edit</a>
+          <ul class="list-unstyled d-flex flex-wrap column-gap-3 mb-0 ms-md-auto">
+            <li id="projectVersion">Version: 3.5.2-SNAPSHOT</li>
+          </ul>
         </div>
       </header>
       <div class="row">
@@ -117,6 +118,8 @@
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body flex-column">
+          <div class="page-tools d-flex align-items-center gap-2 mb-2 px-3"><div class="theme-switch btn-group btn-group-sm" role="group" aria-label="Colour theme" hidden><button type="button" class="btn border" data-fluido-theme-value="light" title="Light" aria-label="Light" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.05 3.05l1.06 1.06M11.89 11.89l1.06 1.06M3.05 12.95l1.06-1.06M11.89 4.11l1.06-1.06" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><button type="button" class="btn border" data-fluido-theme-value="dark" title="Dark" aria-label="Dark" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M6.2 1.2a6.9 6.9 0 1 0 8.6 8.6A5.6 5.6 0 0 1 6.2 1.2z" fill="currentColor"/></svg></button><button type="button" class="btn border" data-fluido-theme-value="auto" title="Auto" aria-label="Auto" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.75a6.25 6.25 0 0 0 0 12.5z" fill="currentColor"/></svg></button></div>
+<a class="edit-link btn btn-sm border" href="https://github.com/apache/maven-filtering/tree/HEAD/src/site/markdown/usage.md" title="Edit" aria-label="Edit"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M11.2 1.8l3 3L5.4 13.6 1.8 14.2l.6-3.6z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.4 3.6l3 3" stroke="currentColor" stroke-width="1.5"/></svg></a></div>
           <nav class="sidebar-nav border-end mb-3" aria-label="Menu">
               <ul class="menu-list list-unstyled mb-0">
                 <li class="menu-heading pt-2 small fw-semibold text-uppercase text-body-secondary"><span>Overview</span></li>
@@ -170,7 +173,7 @@
         <div class="footer-content clearfix">
             <p>©      2002–2026
 <a href="https://www.apache.org/">The Apache Software Foundation</a>
-<span class="float-end"><span id="publishDate" class="text-nowrap">Last Published: 2026-06-30</span> | <span id="projectVersion" class="text-nowrap">Version: 3.5.2-SNAPSHOT</span></span></p>
+<span class="float-end"><span id="publishDate" class="text-nowrap">Last Published: 2026-06-30</span></span></p>
         </div>
       </div>
     </footer>
